@@ -11,7 +11,7 @@ from admin.admincontroller import AdminController
 class SuperAdminController(AdminController):
     def __init__(self):
         super().__init__()
-        print('here')
+        # print('here')
         self.user = User()
         # self.userdb = UsersDB()
         # self.score = ScoresDB()
@@ -84,7 +84,7 @@ class SuperAdminController(AdminController):
             else:
                 confirmation = input("Are you sure? (Yes/No)\n=>")
                 if confirmation == "yes":
-                    self.userdb.delete_user_by_admin(username, "admin")
+                    self.userdb.delete_admin_by_superadmin(username)
                     print(f"{username}, deleted successfully!!")
         except Exception:
             print(Exception.__name__)

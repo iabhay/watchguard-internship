@@ -18,7 +18,6 @@ ADMIN_PROMPT: |
   11. : Check Question
   12. : Show all Questions
   13. : Exit Admin Menu
-  Enter Choice:
 PLAYER_PROMPT: |
   Press:
   1 : Play Game

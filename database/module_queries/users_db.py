@@ -34,11 +34,11 @@ class UsersDB:
             cursor.close()
 
 
-    def delete_user_by_admin(self, username, role):
+    def delete_user_by_admin(self, username):
         #check if admin
         with DatabaseConnection(QUIZ) as connection:
             cursor = connection.cursor()
-            cursor.execute(UsersTableQuery.query_delete_user_by_admin, (username,role))
+            cursor.execute(UsersTableQuery.query_delete_user_by_admin, (username,))
             cursor.execute(ScoresTableQuery.query_delete_score, (username,))
             cursor.close()
 
@@ -97,4 +97,15 @@ class UsersDB:
             if not res:
                 return None
             return res
+
+    def delete_admin_by_superadmin(self, username):
+        with DatabaseConnection(QUIZ) as connection:
+            cursor = connection.cursor()
+            try:
+                cursor.execute(UsersTableQuery.query_delete_admin, (username,))
+                cursor.execute(ScoresTableQuery.query_delete_score, (username,))
+                print("Admin deleted!!")
+            except:
+                print("ADMIN DELETION FAILED!!")
+
 

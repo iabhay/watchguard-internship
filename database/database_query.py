@@ -17,6 +17,7 @@ class UsersTableQuery:
     query_update_pasword = 'UPDATE USERS SET password=? where (username=? AND password=?)'
     query_update_pasword_by_admin = 'UPDATE USERS SET password=? WHERE username=?'
     query_check_password_status = 'SELECT is_changed from USERS WHERE username=?'
+    query_delete_admin = 'DELETE FROM USERS WHERE username = ?'
     
 
 class ScoresTableQuery:
@@ -38,9 +39,7 @@ class QUESTIONSTableQuery:
                              'option2 text, option3 text, option4 text, correct text)')
     query_insert_question = ('INSERT INTO QUESTIONSINFO (ques_id, question, option1, '
                              'option2, option3, option4, correct) VALUES (?,?,?,?,?,?,?)')
-    query_update_question = ('UPDATE QUESTIONSINFO SET (question, option1, option2, option3, option4, correct) VALUES '
-                             '(?,'
-                             '?,?,?,?,?) WHERE ques_id=?')
+    query_update_question = ('UPDATE QUESTIONSINFO SET question=? , option1=? , option2=? , option3=? , option4=? , correct=? WHERE ques_id=?')
     query_delete_question = 'DELETE FROM QUESTIONSINFO WHERE ques_id=?'
     query_select_question = ('SELECT ques_id, question, option1, option2, option3, option4, correct '
                              'FROM QUESTIONSINFO WHERE ques_id=?')

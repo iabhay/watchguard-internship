@@ -4,27 +4,26 @@ from database.database_query import UsersTableQuery, ScoresTableQuery, QUESTIONS
 from utils.Exception_Handler.sql_exception_handler import exception_handler
 from config.config import Config
 from config.config import Config
+
 QUIZ = "QUIZ.db"
 
 
 class QuestionsDB:
 
     def __init__(self):
-            with DatabaseConnection(QUIZ) as connection:
-                cursor = connection.cursor()
-                cursor.execute(UsersTableQuery.query_create_user)
-                cursor.execute(ScoresTableQuery.query_create_score)
-                cursor.execute(QUESTIONSTableQuery.query_create_question)
-                cursor.close()
-
+        with DatabaseConnection(QUIZ) as connection:
+            cursor = connection.cursor()
+            cursor.execute(UsersTableQuery.query_create_user)
+            cursor.execute(ScoresTableQuery.query_create_score)
+            cursor.execute(QUESTIONSTableQuery.query_create_question)
+            cursor.close()
 
     def add_question(self, ques_id, question, option1, option2, option3, option4, correct):
         with DatabaseConnection(QUIZ) as connection:
             cursor = connection.cursor()
             cursor.execute(QUESTIONSTableQuery.query_insert_question,
-                                (ques_id, question, option1, option2, option3, option4, correct))
+                           (ques_id, question, option1, option2, option3, option4, correct))
             cursor.close()
-
 
     def show_question(self, ques_id):
         with DatabaseConnection(QUIZ) as connection:
@@ -34,7 +33,6 @@ class QuestionsDB:
                 return None
             cursor.close()
             return ques
-
 
     def fetch_question(self, ques_id):
         with DatabaseConnection(QUIZ) as connection:
@@ -51,21 +49,17 @@ class QuestionsDB:
             ques = cursor.execute(QUESTIONSTableQuery.query_get_one_question).fetchone()
             return ques
 
-
     def show_all_question(self):
         with DatabaseConnection(QUIZ) as connection:
             cursor = connection.cursor()
-            entry = cursor.execute(QUESTIONSTableQuery.query_select_all_question)
+            entry = cursor.execute(QUESTIONSTableQuery.query_select_all_question).fetchall()
             print(tabulate(entry))
             cursor.close()
 
-
-    def update_question(self, new_question, new_option1, new_option2, new_option3, new_option4, new_correct, ques_id):
+    def update_question(self, question, option1, option2, option3, option4, correct, ques_id):
         with DatabaseConnection(QUIZ) as connection:
             cursor = connection.cursor()
-            cursor.execute(QUESTIONSTableQuery.query_update_question,
-                                (new_question, new_option1, new_option2, new_option3,
-                                 new_option4, new_correct, ques_id))
+            cursor.execute(QUESTIONSTableQuery.query_update_question, (question, option1, option2, option3, option4, correct, ques_id))
             cursor.close()
 
     def delete_question(self, ques_id):
@@ -73,7 +67,6 @@ class QuestionsDB:
             cursor = connection.cursor()
             cursor.execute(QUESTIONSTableQuery.query_delete_question, (ques_id,))
             cursor.close()
-
 
     def count_questions(self):
         with DatabaseConnection(QUIZ) as connection:

@@ -22,25 +22,31 @@ class Question:
         option_c = input("Enter Option C: ")
         option_d = input("Enter Option D: ")
         correct = input("Enter correct option -> 'A','B','C','D'\n=>")
-        return question, option_a, option_b, option_c, option_d, correct
+        return [question, option_a, option_b, option_c, option_d, correct]
 
     def show_all_questions(self):
         self.quesdb.show_all_question()
 
     def update_question_by_id(self, ques_id):
-        try:
-            ques_data = self.quesdb.show_question(ques_id)
-            if not ques_data:
-                print("No Such Question ID Found!!")
-            else:
-                print(f"Question: {ques_data[0]}\nOptions:\nA. {ques_data[1]}\n"
-                      f"B. {ques_data[2]}\nC. {ques_data[3]}\nD. {ques_data[4]}\nCorrect: {ques_data[5]}")
-                question, option_a, option_b, option_c, option_d, correct = self.question_input()
-                self.quesdb.update_question(question, option_a, option_b, option_c, option_d, correct, ques_id)
-                print("Question Updated Successfully!!")
-        except Exception:
-            print(Exception.__name__)
-            print("Updating Question failed by admin!!")
+        # try:
+        ques_data = self.quesdb.show_question(ques_id)
+        if not ques_data:
+            print("No Such Question ID Found!!")
+        else:
+            print(f"Question: {ques_data[1]}\nOptions:\nA. {ques_data[2]}\n"
+                  f"B. {ques_data[3]}\nC. {ques_data[4]}\nD. {ques_data[5]}\nCorrect: {ques_data[6]}")
+            new_data = self.question_input()
+            question = new_data[0]
+            option_a = new_data[1]
+            option_b = new_data[2]
+            option_c = new_data[3]
+            option_d = new_data[4]
+            correct = new_data[5]
+            self.quesdb.update_question(question, option_a, option_b, option_c, option_d, correct, ques_id)
+            print("Question Updated Successfully!!")
+        # except Exception:
+        #     print(Exception.__name__)
+        #     print("Updating Question failed by admin!!")
 
     def delete_question_by_id(self, ques_id):
         try:

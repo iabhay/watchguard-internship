@@ -43,9 +43,11 @@ class Login:
                         if is_admin_menu == 1:
                             print("Welcome to admin Powers: -->")
                             self.admin.adminmodule()
+                            break
                         elif is_admin_menu == 2:
                             print("Welcome to player Fun Arena -->")
                             self.player.playermodule(username)
+                            break
                         else:
                             print("Enter Carefully.")
                             is_admin_menu = int(input(Config.ADMIN_MENU_PROMPT))

@@ -15,8 +15,8 @@ class AdminController(User):
             super().__init__()
             self.ques = Question()
 
-    def create_user(self):
-        User.add_user(role="player", is_changed=0)
+    # def add_user(self, role="player", is_Changed=1):
+    #     User.add_user(role="player", is_changed=0)
 
     def update_user_password(self):
         username = input("Enter Username: ")
@@ -31,7 +31,7 @@ class AdminController(User):
 
     def delete_user(self):
         username = input("Enter username to delete: ")
-        self.userdb.delete_user_by_admin(username, "player")
+        self.userdb.delete_user_by_admin(username)
 
     def add_question(self):
         self.ques.add_question()
@@ -48,12 +48,12 @@ class AdminController(User):
         self.ques.show_all_questions()
 
     def update_question(self):
-        try:
-            ques_id = int(input(f"Enter Question ID to update details: "))
-            self.ques.update_question_by_id(ques_id)
-        except Exception:
-            print(Exception.__name__)
-            print("Update Question from admin failed!!")
+        # try:
+        ques_id = int(input(f"Enter Question ID to update details: "))
+        self.ques.update_question_by_id(ques_id)
+        # except Exception:
+        #     print(Exception.__name__)
+        #     print("Update Question from admin failed!!")
 
     def delete_question(self):
         # try:

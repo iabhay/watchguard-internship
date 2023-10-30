@@ -36,6 +36,9 @@ class ScoresDB:
         with DatabaseConnection(QUIZ) as connection:
             cursor = connection.cursor()
             player_score = cursor.execute(ScoresTableQuery.query_select_userscore, (username, )).fetchone()
+            if not player_score:
+                print(f"No such user found!!")
+                return
             print(f"Last Played: {player_score[0]}\nUser: {player_score[1]}\nRole: {player_score[2]}\nHighscore: {player_score[3]}\n"
                   f"Login Status: {'Active' if player_score[4] == 1 else 'Not-Active'}")
             cursor.close()

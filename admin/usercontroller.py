@@ -17,12 +17,6 @@ class User:
 
     def add_user(self, role="player", is_changed=1):
         username = input("Enter Username: ")
-        # if is_changed == 0:
-        #     pwo = PasswordGenerator()
-        #     password = pwo.non_duplicate_password(7)
-        #     self.userdb.create_user(username=username, password=password, role=role, is_changed=is_changed)
-        #     print("User added Successfully.")
-        # else:
         print(Config.SECURE_PASSWORD_PROMPT)
         password = pwinput("Enter Password: ", "*")
         if password_validation(password):

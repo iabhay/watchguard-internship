@@ -6,7 +6,7 @@ from config.config import Config
 class Admin:
     def __init__(self):
         self.admin_dict = {
-            1: adm.create_user,
+            1: adm.add_user,
             2: adm.delete_user,
             3: adm.show_user,
             4: adm.show_all_user,
@@ -27,16 +27,17 @@ class Admin:
             if ask_user == 13:
                 print("Exiting admin Module: ")
             while ask_user != 13:
-                if 1 > ask_user > 13:
-                    print("Please Select Carefully!!")
-                    print(Config.ADMIN_PROMPT)
-                    ask_user = int(input(Config.ENTER_CHOICE_PROMPT))
-                else:
+                if ask_user >= 1 and ask_user < 13:
                     self.admin_dict[ask_user]()
                     print(Config.ADMIN_PROMPT)
                     ask_user = int(input(Config.ENTER_CHOICE_PROMPT))
-                    if ask_user == 13:
-                        print("Exiting admin Module: ")
+                elif ask_user == 13:
+                    print("Exiting admin Module: ")
+                else:
+                    print("Select Carefully!")
+                    print(Config.ADMIN_PROMPT)
+                    ask_user = int(input(Config.ENTER_CHOICE_PROMPT))
+
         except Exception:
             print(Exception.__name__)
             print("admin Module Controller not working!!")

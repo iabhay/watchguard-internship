@@ -9,7 +9,7 @@ class SuperAdminModule:
             1: super_admin.create_new_admin,
             2: super_admin.change_admin_to_user,
             3: super_admin.delete_admin,
-            4: super_admin.create_user,
+            4: super_admin.add_user,
             5: super_admin.change_user_to_admin,
             6: super_admin.delete_admin,
             7: super_admin.show_user,

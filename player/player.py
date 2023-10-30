@@ -13,26 +13,22 @@ class Player:
     def playermodule(self, username):
         print(f"You are logged in successfully.")
         ask = int(input(Config.PLAYER_PROMPT))
-        while ask < 0 and ask > 4:
-            print("Enter Carefully!!")
-            ask = int(input(Config.PLAYER_PROMPT))
         if ask == 4:
             print("Exiting login Menu.!!")
         while ask != 4:
+            ask = int(input(Config.PLAYER_PROMPT))
             if ask == 1:
                 self.playgame(username)
             elif ask == 2:
                 self.highscoreinfo(username)
             elif ask == 3:
                 self.leaderboard()
+            elif ask == 4:
+                print(f"Exiting Player Menu!!")
+                break
             else:
                 print("Please Select Carefully!")
-            ask = int(input(Config.PLAYER_PROMPT))
-            # while ask < 0 and ask > 4:
-            #     print("Enter Carefully!!")
-            #     ask = int(input(Config.PLAYER_PROMPT))
-            if ask == 4:
-                print(f"Exiting Player Menu!!")
+                ask = int(input(Config.PLAYER_PROMPT))
 
     def playgame(self, username):
         print("We will give you 10 Questions.")
